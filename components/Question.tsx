@@ -52,8 +52,10 @@ export const Question: React.FC<QuestionProps> = ({
             value={idx}
             name={`answer`}
             onChange={() => {
-              onSubmit(idx);
-              setSelectedIdx(idx);
+              if (!selectedIdx) {
+                onSubmit(idx);
+                setSelectedIdx(idx);
+              }
             }}
           />
         </div>
