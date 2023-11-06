@@ -96,6 +96,7 @@ const PracticePage = ({ data }: { data: QuestionType[] }) => {
             onSubmit={handleAnswerSubmit}
             onFinish={handleFinishPractice}
             onNextQuestion={handleNextQuestion}
+            onLeavePractice={handleLeavePractice}
           />
         </>
       )}
@@ -113,7 +114,6 @@ const PracticePage = ({ data }: { data: QuestionType[] }) => {
               ]
             }
           />
-          <button onClick={handleLeavePractice}>Leave</button>
         </>
       )}
       {state.matches("practiceResultDisplayed") && (
