@@ -1,5 +1,5 @@
 import { createMachine } from "xstate";
-import { fetchQuestionsAPI } from "@/app/lib/data";
+import { fetchQuestions } from "@/app/lib/data";
 
 export interface QuestionType {
   id: string;
@@ -169,7 +169,7 @@ export const practiceMachine = createMachine<PracticeContext>(
       },
     },
     services: {
-      fetchQuestionsService: (context, event) => fetchQuestionsAPI(),
+      fetchQuestionsService: (context, event) => fetchQuestions(),
     },
     guards: {
       hasMoreQuestions: (context) => {
