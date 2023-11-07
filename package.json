@@ -10,8 +10,10 @@
     "seed": "node -r dotenv/config ./scripts/seed.js"
   },
   "dependencies": {
+    "@playwright/test": "^1.39.0",
     "@vercel/postgres": "^0.5.1",
     "@xstate/inspect": "^0.8.0",
+    "@xstate/test": "^0.5.1",
     "next": "14.0.1",
     "react": "^18",
     "react-dom": "^18",

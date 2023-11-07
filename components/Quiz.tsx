@@ -15,14 +15,7 @@ if (typeof window !== "undefined") {
   });
 }
 
-interface PracticeContext {
-  questions: QuestionType[];
-  currentQuestionIndex: number;
-  selectedAnswers: number[];
-  score: number;
-}
-
-const PracticePage = ({ data }: { data: QuestionType[] }) => {
+const PracticePage = () => {
   const [state, setState] = useState(practiceMachine.initialState);
   const [service, setService] = useState<any>(null);
   const questions = state.context.questions;
@@ -68,7 +61,8 @@ const PracticePage = ({ data }: { data: QuestionType[] }) => {
         <button onClick={handleStartPractice}>Start Practice</button>
       )}
       {(state.matches("practiceSession.questionDisplayed") ||
-        state.matches("practiceSession.submissionEvaluationDisplayed")) && (
+        state.matches("practiceSession.submissionEvaluationDisplayed") ||
+        state.matches("practiceSession.leaveConfirmationDisplayed")) && (
         <>
           <div className="grid grid-cols-12 items-center gap-4">
             <div className="col-span-11 w-full bg-gray-200 rounded-full h-2.5 ">
@@ -98,9 +92,25 @@ const PracticePage = ({ data }: { data: QuestionType[] }) => {
             onNextQuestion={handleNextQuestion}
             onLeavePractice={handleLeavePractice}
           />
+
+          {questions[state.context.currentQuestionIndex].userAnswer && (
+            <Evaluation
+              answerSubmitted={
+                questions[state.context.currentQuestionIndex].options[
+                  questions[state.context.currentQuestionIndex].userAnswer!
+                ]
+              }
+              correctAnswer={
+                questions[state.context.currentQuestionIndex].options[
+                  questions[state.context.currentQuestionIndex].correctAnswer
+                ]
+              }
+            />
+          )}
+          <button onClick={handleLeavePractice}>Leave</button>
         </>
       )}
-      {state.matches("practiceSession.submissionEvaluationDisplayed") && (
+      {/* {state.matches("practiceSession.submissionEvaluationDisplayed") && (
         <>
           <Evaluation
             answerSubmitted={
@@ -115,7 +125,7 @@ const PracticePage = ({ data }: { data: QuestionType[] }) => {
             }
           />
         </>
-      )}
+      )} */}
       {state.matches("practiceResultDisplayed") && (
         <Result score={state.context.score} onNewPractice={handleNewPractice} />
       )}
