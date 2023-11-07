@@ -1,5 +1,5 @@
 import { createMachine } from "xstate";
-import { fetchQuestions, fetchQuestionsAPI } from "@/app/lib/data";
+import { fetchQuestions, fetchQuestionsAPI } from "../../app/lib/data";
 
 export interface QuestionType {
   id: string;
@@ -27,6 +27,7 @@ export const practiceMachine = createMachine<PracticeContext>(
     initial: "idle",
     states: {
       idle: {
+        id: "idle",
         on: {
           PRACTICE_STARTED: {
             target: "practiceSession.fetching",
@@ -61,6 +62,7 @@ export const practiceMachine = createMachine<PracticeContext>(
             },
           },
           questionDisplayed: {
+            id: "questionDisplayed",
             on: {
               ANSWER_SUBMITTED: {
                 target: "submissionEvaluationDisplayed",
@@ -80,6 +82,7 @@ export const practiceMachine = createMachine<PracticeContext>(
             },
           },
           submissionEvaluationDisplayed: {
+            id: "submissionEvaluationDisplayed",
             on: {
               NEW_QUESTION_REQUESTED: {
                 target: "questionDisplayed",
@@ -95,6 +98,7 @@ export const practiceMachine = createMachine<PracticeContext>(
             },
           },
           leaveConfirmationDisplayed: {
+            id: "leaveConfirmationDisplayed",
             on: {
               LEAVE_CONFIRMED: {
                 target: "#practiceMachine.idle",
@@ -108,6 +112,7 @@ export const practiceMachine = createMachine<PracticeContext>(
         },
       },
       practiceResultDisplayed: {
+        id: "practiceResultDisplayed",
         on: {
           NEW_PRACTICE_REQUESTED: {
             target: "practiceSession.fetching",
