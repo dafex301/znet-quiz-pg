@@ -1,5 +1,7 @@
 import { createMachine } from "xstate";
-import { fetchQuestions, fetchQuestionsAPI } from "../../app/lib/data";
+
+import { fetchQuestions } from "@/app/lib/data";
+
 
 export interface QuestionType {
   id: string;

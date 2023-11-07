@@ -8,6 +8,7 @@ interface QuestionProps {
   onSubmit: (selectedOption: number | null) => void;
   onFinish: () => void;
   onNextQuestion: () => void;
+  onLeavePractice: () => void;
 }
 
 export const Question: React.FC<QuestionProps> = ({
@@ -16,11 +17,19 @@ export const Question: React.FC<QuestionProps> = ({
   onSubmit,
   onFinish,
   onNextQuestion,
+  onLeavePractice,
 }) => {
   const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
   const handleNextQuestion = () => {
     onNextQuestion();
     setSelectedIdx(null);
+  };
+
+  const handleOptionClick = (idx: number) => {
+    if (selectedIdx === null) {
+      setSelectedIdx(idx);
+      onSubmit(idx);
+    }
   };
 
   return (
@@ -35,6 +44,7 @@ export const Question: React.FC<QuestionProps> = ({
                 ? "text-left flex items-center border-gray-300 bg-purple-600 text-white hover:bg-purple-700 border-2 rounded-full p-2 px-4 transition-all"
                 : "text-left flex items-center border-gray-300 hover:bg-gray-100 border-2 rounded-full p-2 px-4 transition-all"
             }
+            onClick={() => handleOptionClick(idx)}
           >
             <span
               className={`text-xl mr-3 font-medium ${
@@ -51,6 +61,7 @@ export const Question: React.FC<QuestionProps> = ({
             type="radio"
             value={idx}
             name={`answer`}
+            disabled={selectedIdx !== null}
             onChange={() => {
               if (!selectedIdx) {
                 onSubmit(idx);
@@ -75,6 +86,12 @@ export const Question: React.FC<QuestionProps> = ({
             Next
           </button>
         )}
+        <button
+          className="px-4 py-2 rounded-full hover:bg-gray-200 text-gray-800 transition-all border-2 border-gray-200"
+          onClick={onLeavePractice}
+        >
+          Leave
+        </button>
       </div>
     </div>
   );

@@ -90,6 +90,7 @@ const PracticePage = () => {
             onSubmit={handleAnswerSubmit}
             onFinish={handleFinishPractice}
             onNextQuestion={handleNextQuestion}
+            onLeavePractice={handleLeavePractice}
           />
 
           {questions[state.context.currentQuestionIndex].userAnswer && (
