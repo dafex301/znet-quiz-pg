@@ -93,7 +93,8 @@ const PracticePage = () => {
             onLeavePractice={handleLeavePractice}
           />
 
-          {questions[state.context.currentQuestionIndex].userAnswer && (
+          {questions[state.context.currentQuestionIndex].userAnswer !==
+            undefined && (
             <Evaluation
               answerSubmitted={
                 questions[state.context.currentQuestionIndex].options[
@@ -107,7 +108,7 @@ const PracticePage = () => {
               }
             />
           )}
-          <button onClick={handleLeavePractice}>Leave</button>
+          {/* <button onClick={handleLeavePractice}>Leave</button> */}
         </>
       )}
       {/* {state.matches("practiceSession.submissionEvaluationDisplayed") && (
