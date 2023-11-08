@@ -10,6 +10,7 @@
     "seed": "node -r dotenv/config ./scripts/seed.js"
   },
   "dependencies": {
+    "@clerk/nextjs": "^4.26.2",
     "@playwright/test": "^1.39.0",
     "@vercel/postgres": "^0.5.1",
     "@xstate/inspect": "^0.8.0",

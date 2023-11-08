@@ -26,7 +26,6 @@ export const Question: React.FC<QuestionProps> = ({
   };
 
   const handleOptionClick = (idx: number) => {
-    console.log("fire", idx);
     if (selectedIdx === null) {
       setSelectedIdx(idx);
       onSubmit(idx);
