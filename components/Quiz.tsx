@@ -4,7 +4,7 @@ import { interpret, State } from "xstate";
 
 import { inspect } from "@xstate/inspect";
 
-import { QuestionType, practiceMachine } from "../app/practice/machine";
+import { practiceMachine } from "../app/practice/machine";
 import { Question, Result, LeaveConfirmation } from "@/components";
 import { Evaluation } from "@/components/Evaluation";
 
@@ -35,8 +35,8 @@ const PracticePage = () => {
 
   const handleStartPractice = () => service.send({ type: "PRACTICE_STARTED" });
 
-  const handleAnswerSubmit = (answer: number | null) => {
-    service.send({ type: "ANSWER_SUBMITTED", answer });
+  const handleAnswerSubmit = (answer: number | null, questionId: string) => {
+    service.send({ type: "ANSWER_SUBMITTED", answer, questionId });
   };
 
   const handleNextQuestion = () => {
@@ -103,7 +103,7 @@ const PracticePage = () => {
               }
               correctAnswer={
                 questions[state.context.currentQuestionIndex].options[
-                  questions[state.context.currentQuestionIndex].correctAnswer
+                  questions[state.context.currentQuestionIndex].correctAnswer!
                 ]
               }
             />

@@ -1,15 +1,20 @@
 import { createMachine } from "xstate";
 
-import { fetchQuestions } from "@/app/lib/data";
+import { fetchAnswer, fetchQuestions } from "@/app/lib/data";
+import { IQuestion } from "../lib/definitions";
 
+// export interface QuestionType {
+//   id: string;
+//   text: string;
+//   options: string[];
+//   correctAnswer: number;
+//   userAnswer?: number;
+// }
 
-export interface QuestionType {
-  id: string;
-  text: string;
-  options: string[];
-  correctAnswer: number;
+type QuestionType = Omit<IQuestion, "correctAnswer"> & {
   userAnswer?: number;
-}
+  correctAnswer?: number;
+};
 
 interface PracticeContext {
   questions: QuestionType[];
@@ -68,7 +73,7 @@ export const practiceMachine = createMachine<PracticeContext>(
             on: {
               ANSWER_SUBMITTED: {
                 target: "submissionEvaluationDisplayed",
-                actions: "evaluateAnswer",
+                // actions: "evaluateAnswer",
               },
               NEW_QUESTION_REQUESTED: {
                 target: "questionDisplayed",
@@ -85,6 +90,17 @@ export const practiceMachine = createMachine<PracticeContext>(
           },
           submissionEvaluationDisplayed: {
             id: "submissionEvaluationDisplayed",
+            invoke: {
+              id: "fetchAnswer",
+              src: "fetchAnswerService",
+              onDone: {
+                actions: "evaluateAnswer",
+              },
+              onError: {
+                target: "fetchingError",
+                actions: "handleError",
+              },
+            },
             on: {
               NEW_QUESTION_REQUESTED: {
                 target: "questionDisplayed",
@@ -152,13 +168,12 @@ export const practiceMachine = createMachine<PracticeContext>(
       },
 
       evaluateAnswer: (context, event) => {
-        if ("answer" in event) {
+        if ("data" in event) {
           context.questions[context.currentQuestionIndex].userAnswer =
-            event.answer;
-          if (
-            event.answer ===
-            context.questions[context.currentQuestionIndex].correctAnswer
-          ) {
+            event.data.answer;
+          context.questions[context.currentQuestionIndex].correctAnswer =
+            event.data.correct_answer;
+          if (event.data.answer === event.data.correct_answer) {
             context.score++;
           }
         }
@@ -176,7 +191,11 @@ export const practiceMachine = createMachine<PracticeContext>(
       },
     },
     services: {
-      fetchQuestionsService: (context, event) => fetchQuestions(),
+      fetchQuestionsService: async (context, event) => await fetchQuestions(),
+      fetchAnswerService: async (context, event) => {
+        const correct_answer = await fetchAnswer(event.questionId);
+        return { answer: event.answer, correct_answer };
+      },
     },
     guards: {
       hasMoreQuestions: (context) => {
