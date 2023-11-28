@@ -1,6 +1,6 @@
 import { createMachine } from "xstate";
 
-import { fetchAnswer, fetchQuestions } from "@/app/lib/data";
+import { fetchAnswer, fetchQuestions } from "../lib/data";
 import { IQuestion } from "../lib/definitions";
 
 // export interface QuestionType {
@@ -169,10 +169,6 @@ export const practiceMachine = createMachine<PracticeContext>(
 
       evaluateAnswer: (context, event) => {
         if ("data" in event) {
-          context.questions[context.currentQuestionIndex].userAnswer =
-            event.data.answer;
-          context.questions[context.currentQuestionIndex].correctAnswer =
-            event.data.correct_answer;
           if (event.data.answer === event.data.correct_answer) {
             context.score++;
           }

@@ -19,6 +19,7 @@ const PracticePage = () => {
   const [state, setState] = useState(practiceMachine.initialState);
   const [service, setService] = useState<any>(null);
   const questions = state.context.questions;
+  const event = state.event;
 
   // Start the service when the component mounts
   useEffect(() => {
@@ -93,17 +94,16 @@ const PracticePage = () => {
             onLeavePractice={handleLeavePractice}
           />
 
-          {questions[state.context.currentQuestionIndex].userAnswer !==
-            undefined && (
+          {event.data && event.data.correct_answer !== undefined && (
             <Evaluation
               answerSubmitted={
                 questions[state.context.currentQuestionIndex].options[
-                  questions[state.context.currentQuestionIndex].userAnswer!
+                  event.data.answer
                 ]
               }
               correctAnswer={
                 questions[state.context.currentQuestionIndex].options[
-                  questions[state.context.currentQuestionIndex].correctAnswer!
+                  event.data.correct_answer
                 ]
               }
             />
