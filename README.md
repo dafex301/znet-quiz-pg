@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# ZNet Quiz PG
+
+Welcome to the ZNet Quiz PG repository! This is a quiz web application inspired by Zenpro from Zenius Education. It's built with modern technologies including Next.js, Xstate, Clerk, and Vercel Postgres. The app is designed to offer a seamless and interactive quiz experience, backed by robust state management and secure authentication.
+
+## Key Features
+
+- **Framework**: Next.js for a robust front-end experience.
+- **State Management**: Xstate to handle complex state logic efficiently.
+- **Authentication**: Integrated with Clerk for secure user authentication.
+- **Database**: Utilizes Vercel Postgres for reliable data storage and management.
+- **Deployment**: Hosted on Vercel for seamless deployment and scalability.
+
+## Testing
+
+This app employs two testing strategies:
+
+1. **Jest**: For testing the machine logic and services.
+2. **Playwright**: For model-based testing to ensure the UI works as expected.
 
 ## Getting Started
 
-First, run the development server:
+Follow these steps to set up the project locally:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/dafex301/znet-quiz-pg.git
+   ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. **Environment Setup**
+   - Populate the `.env` file based on the `.env.example`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. **Install Dependencies**
+   ```bash
+   npm install
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+4. **Start Development Server**
+   ```bash
+   npm run dev
+   ```
 
-## Learn More
+## Testing the Application
 
-To learn more about Next.js, take a look at the following resources:
+### Jest Testing
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Create a test file in `/tests/jest/TEST_NAME.test.ts`.
+- Run tests using:
+  ```bash
+  npm run test
+  ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Playwright Testing
 
-## Deploy on Vercel
+- Create a test file in `tests/playwright/TEST_NAME.spec.ts`.
+- To run Playwright tests:
+  ```bash
+  npx playwright test
+  ```
+- For UI-based testing:
+  ```bash
+  npx playwright test --ui
+  ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Contributing
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Contributions, issues, and feature requests are welcome! Feel free to check [issues page](https://github.com/dafex301/znet-quiz-pg/issues) for open issues or to open a new issue.
