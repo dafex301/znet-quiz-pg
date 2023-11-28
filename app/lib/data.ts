@@ -13,17 +13,9 @@ export async function fetchQuestions(): Promise<
     console.log("Fetching questions data...");
 
     // we can be more strict with type by changing any to some type for rows in database
-    const timer = new Date().getTime();
-
     const data = await sql<
       Omit<IQuestion, "correct_answer">
     >`SELECT id, text, options FROM questions limit 5`;
-
-    console.log(
-      "Data fetch complete after " +
-        (new Date().getTime() - timer) +
-        " seconds."
-    );
 
     // convert questions from database to IQuestion type
     return data.rows.map((row) => ({
@@ -39,7 +31,8 @@ export async function fetchQuestions(): Promise<
 
 export async function fetchAnswer(
   question_id: string
-): Promise<Pick<IQuestion, "correct_answer">[]> {
+  // ): Promise<Pick<IQuestion, "correct_answer">> {
+): Promise<number> {
   try {
     const data =
       await sql<any>`SELECT correct_answer FROM questions WHERE id = ${question_id} limit 1`;

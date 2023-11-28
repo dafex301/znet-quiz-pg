@@ -1,5 +1,6 @@
 import { practiceMachine } from "../../app/practice/machine";
 import { interpret } from "xstate";
+import { waitFor } from "xstate/lib/waitFor";
 
 const mockPracticeMachine = practiceMachine.withConfig({
   services: {
@@ -35,7 +36,7 @@ const mockPracticeMachine = practiceMachine.withConfig({
 });
 
 it('should eventually reach "questionDisplayed"', (done) => {
-  const pmTest = interpret(mockPracticeMachine).onTransition((state) => {
+  const pmTest = interpret(practiceMachine).onTransition((state) => {
     // console.log(state.value);
     if (state.matches("practiceSession.questionDisplayed")) {
       done();
@@ -46,14 +47,17 @@ it('should eventually reach "questionDisplayed"', (done) => {
 });
 
 it('should eventually reach "submissionEvaluationDisplayed"', (done) => {
-  const pmTest = interpret(mockPracticeMachine).onTransition((state) => {
-    if (state.matches("practiceSession.questionDisplayed")) {
-      pmTest.send("ANSWER_SUBMITTED", { answer: 1 });
-    }
+  const pmTest = interpret(practiceMachine).onTransition((state) => {
     if (state.matches("practiceSession.submissionEvaluationDisplayed")) {
       done();
     }
   });
-  pmTest.start();
-  pmTest.send("PRACTICE_STARTED");
+  (async () => {
+    pmTest.start();
+    pmTest.send("PRACTICE_STARTED");
+    await waitFor(pmTest, (state) =>
+      state.matches("practiceSession.questionDisplayed")
+    );
+    pmTest.send("ANSWER_SUBMITTED", { answer: 1 });
+  })();
 });
