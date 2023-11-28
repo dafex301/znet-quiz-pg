@@ -10,7 +10,7 @@ export async function fetchQuestions(): Promise<
   // This is equivalent to in fetch(..., {cache: 'no-store'}).
 
   try {
-    console.log("Fetching questions data...");
+    // console.log("Fetching questions data...");
 
     // we can be more strict with type by changing any to some type for rows in database
     const data = await sql<

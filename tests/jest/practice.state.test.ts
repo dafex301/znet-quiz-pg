@@ -37,7 +37,6 @@ const mockPracticeMachine = practiceMachine.withConfig({
 
 it('should eventually reach "questionDisplayed"', (done) => {
   const pmTest = interpret(practiceMachine).onTransition((state) => {
-    // console.log(state.value);
     if (state.matches("practiceSession.questionDisplayed")) {
       done();
     }
@@ -48,7 +47,11 @@ it('should eventually reach "questionDisplayed"', (done) => {
 
 it('should eventually reach "submissionEvaluationDisplayed"', (done) => {
   const pmTest = interpret(practiceMachine).onTransition((state) => {
-    if (state.matches("practiceSession.submissionEvaluationDisplayed")) {
+    if (
+      state.matches("practiceSession.submissionEvaluationDisplayed") &&
+      state.actions.length > 0 &&
+      state.actions[0].type === "evaluateAnswer"
+    ) {
       done();
     }
   });
@@ -58,6 +61,10 @@ it('should eventually reach "submissionEvaluationDisplayed"', (done) => {
     await waitFor(pmTest, (state) =>
       state.matches("practiceSession.questionDisplayed")
     );
-    pmTest.send("ANSWER_SUBMITTED", { answer: 1 });
+    pmTest.send({
+      type: "ANSWER_SUBMITTED",
+      answer: 2,
+      questionId: "07e338dd-cde0-04b3-25a7-27895c23e2d7",
+    });
   })();
 });
