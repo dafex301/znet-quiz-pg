@@ -1,4 +1,4 @@
-import { practiceMachine } from "../app/practice/machine";
+import { practiceMachine } from "../../app/practice/machine";
 import { interpret } from "xstate";
 
 const mockPracticeMachine = practiceMachine.withConfig({
