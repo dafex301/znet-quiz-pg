@@ -4,7 +4,7 @@ import { interpret, State } from "xstate";
 
 import { inspect } from "@xstate/inspect";
 
-import { QuestionType, practiceMachine } from "../app/practice/machine";
+import { practiceMachine } from "../app/practice/machine";
 import { Question, Result, LeaveConfirmation } from "@/components";
 import { Evaluation } from "@/components/Evaluation";
 
@@ -19,6 +19,7 @@ const PracticePage = () => {
   const [state, setState] = useState(practiceMachine.initialState);
   const [service, setService] = useState<any>(null);
   const questions = state.context.questions;
+  const event = state.event;
 
   // Start the service when the component mounts
   useEffect(() => {
@@ -35,8 +36,8 @@ const PracticePage = () => {
 
   const handleStartPractice = () => service.send({ type: "PRACTICE_STARTED" });
 
-  const handleAnswerSubmit = (answer: number | null) => {
-    service.send({ type: "ANSWER_SUBMITTED", answer });
+  const handleAnswerSubmit = (answer: number | null, questionId: string) => {
+    service.send({ type: "ANSWER_SUBMITTED", answer, questionId });
   };
 
   const handleNextQuestion = () => {
@@ -93,17 +94,16 @@ const PracticePage = () => {
             onLeavePractice={handleLeavePractice}
           />
 
-          {questions[state.context.currentQuestionIndex].userAnswer !==
-            undefined && (
+          {event.data && event.data.correct_answer !== undefined && (
             <Evaluation
               answerSubmitted={
                 questions[state.context.currentQuestionIndex].options[
-                  questions[state.context.currentQuestionIndex].userAnswer!
+                  event.data.answer
                 ]
               }
               correctAnswer={
                 questions[state.context.currentQuestionIndex].options[
-                  questions[state.context.currentQuestionIndex].correctAnswer
+                  event.data.correct_answer
                 ]
               }
             />

@@ -3,29 +3,42 @@
 import { sql } from "@vercel/postgres";
 import { IQuestion } from "./definitions";
 
-export async function fetchQuestions(): Promise<IQuestion[]> {
+export async function fetchQuestions(): Promise<
+  Omit<IQuestion, "correct_answer">[]
+> {
   // Add noStore() here prevent the response from being cached.
   // This is equivalent to in fetch(..., {cache: 'no-store'}).
 
   try {
-    // Artificially delay a reponse for demo purposes.
-    // Don't do this in real life :)
-
-    console.log("Fetching questions data...");
-    // await new Promise((resolve) => setTimeout(resolve, 3000));
+    // console.log("Fetching questions data...");
 
     // we can be more strict with type by changing any to some type for rows in database
-    const data = await sql<any>`SELECT * FROM questions limit 5`;
-
-    console.log("Data fetch complete after 3 seconds.");
+    const data = await sql<
+      Omit<IQuestion, "correct_answer">
+    >`SELECT id, text, options FROM questions limit 5`;
 
     // convert questions from database to IQuestion type
     return data.rows.map((row) => ({
       id: row.id,
       text: row.text,
       options: row.options,
-      correctAnswer: row.correct_answer,
     }));
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch revenue data.");
+  }
+}
+
+export async function fetchAnswer(
+  question_id: string
+  // ): Promise<Pick<IQuestion, "correct_answer">> {
+): Promise<number> {
+  try {
+    const data =
+      await sql<any>`SELECT correct_answer FROM questions WHERE id = ${question_id} limit 1`;
+
+    const { correct_answer } = data.rows[0];
+    return correct_answer;
   } catch (error) {
     console.error("Database Error:", error);
     throw new Error("Failed to fetch revenue data.");
@@ -35,7 +48,6 @@ export async function fetchQuestions(): Promise<IQuestion[]> {
 type IQuestionResponse = {
   questions: IQuestion[];
 };
-
 export async function fetchQuestionsAPI(): Promise<IQuestion[]> {
   try {
     // fetch the data from '/api/questions' with get method

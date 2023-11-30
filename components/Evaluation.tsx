@@ -20,7 +20,9 @@ export const Evaluation: React.FC<EvaluationProps> = ({
   return (
     <div className="bg-white p-4 rounded shadow-md">
       <p className="text-lg font-semibold mb-4">Evaluation</p>
-      <p className={`text-lg font-semibold mb-4 ${textClass}`}>{textIsCorrect}</p>
+      <p className={`text-lg font-semibold mb-4 ${textClass}`}>
+        {textIsCorrect}
+      </p>
       <div className="mb-4">
         <p className="text-lg">Your answer:</p>
         <p className={`text-lg ${textClass}`}>{answerSubmitted}</p>

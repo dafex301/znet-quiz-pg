@@ -3,9 +3,9 @@ import React, { useState } from "react";
 import { IQuestion } from "@/app/lib/definitions";
 
 interface QuestionProps {
-  data: IQuestion[];
+  data: Omit<IQuestion, "correctAnswer">[];
   index: number;
-  onSubmit: (selectedOption: number | null) => void;
+  onSubmit: (selectedOption: number | null, questionId: string) => void;
   onFinish: () => void;
   onNextQuestion: () => void;
   onLeavePractice: () => void;
@@ -26,10 +26,9 @@ export const Question: React.FC<QuestionProps> = ({
   };
 
   const handleOptionClick = (idx: number) => {
-    console.log("fire", idx);
     if (selectedIdx === null) {
       setSelectedIdx(idx);
-      onSubmit(idx);
+      onSubmit(idx, data[index].id);
     }
   };
 
@@ -69,6 +68,12 @@ export const Question: React.FC<QuestionProps> = ({
       <div className="flex justify-end w-full gap-2 mt-5">
         <button
           className="px-4 py-2 rounded-full hover:bg-gray-200 text-gray-800 transition-all border-2 border-gray-200"
+          onClick={onLeavePractice}
+        >
+          Leave
+        </button>
+        <button
+          className="px-4 py-2 rounded-full hover:bg-gray-200 text-gray-800 transition-all border-2 border-gray-200"
           onClick={onFinish}
         >
           Selesai
@@ -81,12 +86,6 @@ export const Question: React.FC<QuestionProps> = ({
             Next
           </button>
         )}
-        <button
-          className="px-4 py-2 rounded-full hover:bg-gray-200 text-gray-800 transition-all border-2 border-gray-200"
-          onClick={onLeavePractice}
-        >
-          Leave
-        </button>
       </div>
     </div>
   );

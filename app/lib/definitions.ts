@@ -4,9 +4,11 @@
 // For simplicity of teaching, we're manually defining these types.
 // However, these types are generated automatically if you're using an ORM such as Prisma.
 
-export interface IQuestion {
+export type IQuestion = {
   id: string;
   text: string;
   options: string[];
-  correctAnswer: number;
-}
+  correct_answer: number;
+};
+
+export type IAnswer = Pick<IQuestion, "id" | "correct_answer">;
