@@ -1,5 +1,6 @@
 "use server";
 
+import { unstable_noStore as noStore } from "next/cache";
 import { sql } from "@vercel/postgres";
 import { IQuestion } from "./definitions";
 
@@ -46,6 +47,7 @@ export async function fetchAnswer(
 }
 
 export async function getUserScore(userId: string): Promise<number> {
+  noStore();
   try {
     const data =
       await sql<any>`SELECT score FROM scores WHERE user_id = ${userId} limit 1`;
@@ -63,6 +65,7 @@ export async function getUserScore(userId: string): Promise<number> {
 }
 
 export async function updateUserScore(userId: string): Promise<void> {
+  noStore();
   try {
     await sql`INSERT INTO scores (user_id, score)
     VALUES (${userId}, 1)
