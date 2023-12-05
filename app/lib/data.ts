@@ -45,6 +45,36 @@ export async function fetchAnswer(
   }
 }
 
+export async function getUserScore(userId: string): Promise<number> {
+  try {
+    const data =
+      await sql<any>`SELECT score FROM scores WHERE user_id = ${userId} limit 1`;
+
+    if (data.rows.length === 0) {
+      return 0;
+    }
+
+    const { score } = data.rows[0];
+    return score;
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch user score data.");
+  }
+}
+
+export async function updateUserScore(userId: string): Promise<void> {
+  try {
+    await sql`INSERT INTO scores (user_id, score)
+    VALUES (${userId}, 1)
+    ON CONFLICT (user_id) DO UPDATE SET score = scores.score + 1;
+    `;
+    console.log("User score updated.");
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to update score.");
+  }
+}
+
 type IQuestionResponse = {
   questions: IQuestion[];
 };
