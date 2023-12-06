@@ -1,4 +1,4 @@
-import { currentUser } from "@clerk/nextjs";
+import { currentUser, SignOutButton } from "@clerk/nextjs";
 import { UserButton } from "@clerk/nextjs/app-beta";
 import Link from "next/link";
 
@@ -25,6 +25,8 @@ export default async function Home() {
       >
         Go to Practice
       </Link>
+      <SignOutButton />
+
     </main>
   );
 }
