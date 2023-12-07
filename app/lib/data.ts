@@ -1,5 +1,6 @@
 "use server";
 
+import { unstable_noStore as noStore } from "next/cache";
 import { sql } from "@vercel/postgres";
 import { IQuestion } from "./definitions";
 
@@ -31,7 +32,6 @@ export async function fetchQuestions(): Promise<
 
 export async function fetchAnswer(
   question_id: string
-  // ): Promise<Pick<IQuestion, "correct_answer">> {
 ): Promise<number> {
   try {
     const data =
@@ -42,6 +42,38 @@ export async function fetchAnswer(
   } catch (error) {
     console.error("Database Error:", error);
     throw new Error("Failed to fetch revenue data.");
+  }
+}
+
+export async function getUserScore(userId: string): Promise<number> {
+  noStore();
+  try {
+    const data =
+      await sql<any>`SELECT score FROM scores WHERE user_id = ${userId} limit 1`;
+
+    if (data.rows.length === 0) {
+      return 0;
+    }
+
+    const { score } = data.rows[0];
+    return score;
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch user score data.");
+  }
+}
+
+export async function updateUserScore(userId: string): Promise<void> {
+  noStore();
+  try {
+    await sql`INSERT INTO scores (user_id, score)
+    VALUES (${userId}, 1)
+    ON CONFLICT (user_id) DO UPDATE SET score = scores.score + 1;
+    `;
+    console.log("User score updated.");
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to update score.");
   }
 }
 

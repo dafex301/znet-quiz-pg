@@ -1,10 +1,10 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { interpret, State } from "xstate";
+import { interpret } from "xstate";
 
 import { inspect } from "@xstate/inspect";
 
-import { practiceMachine } from "../app/practice/machine";
+import { createPracticeMachine } from "../app/practice/machine";
 import { Question, Result, LeaveConfirmation } from "@/components";
 import { Evaluation } from "@/components/Evaluation";
 
@@ -15,7 +15,8 @@ if (typeof window !== "undefined") {
   });
 }
 
-const PracticePage = () => {
+const PracticePage = ({ userId, score }: { userId: string; score: number }) => {
+  const practiceMachine = createPracticeMachine(userId, score);
   const [state, setState] = useState(practiceMachine.initialState);
   const [service, setService] = useState<any>(null);
   const questions = state.context.questions;
@@ -59,7 +60,10 @@ const PracticePage = () => {
   return (
     <div className="mx-5">
       {state.matches("idle") && (
-        <button onClick={handleStartPractice}>Start Practice</button>
+        <Result
+          score={state.context.score}
+          onNewPractice={handleStartPractice}
+        />
       )}
       {(state.matches("practiceSession.questionDisplayed") ||
         state.matches("practiceSession.submissionEvaluationDisplayed") ||
