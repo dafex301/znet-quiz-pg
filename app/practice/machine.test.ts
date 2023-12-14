@@ -1,8 +1,8 @@
 import { interpret } from 'xstate';
-import { practiceMachine } from './machine';
+import { createPracticeMachine } from './machine';
 
 it('should eventually reach "questionDisplayed"', (done) => {
-    const fetchService = interpret(practiceMachine).onTransition((state) => {
+    const fetchService = interpret(createPracticeMachine).onTransition((state) => {
       // this is where you expect the state to eventually
       // be reached
       console.log("state ", state.value);

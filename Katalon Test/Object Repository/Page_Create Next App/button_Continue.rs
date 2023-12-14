@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>button_Continue</name>
+   <tag></tag>
+   <elementGuidId>b942c198-48d6-47f3-8bde-0b060db693f0</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>CSS</key>
+         <value>button.cl-formButtonPrimary.🔒️.cl-internal-1fsg6zy</value>
+      </entry>
+      <entry>
+         <key>XPATH</key>
+         <value>(.//*[normalize-space(text()) and normalize-space(.)='Password'])[1]/following::button[2]</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>button</value>
+      <webElementGuid>4b33b9ed-8226-4a32-87d1-17a95db2eea1</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>cl-formButtonPrimary 🔒️ cl-internal-1fsg6zy</value>
+      <webElementGuid>00e7a993-8cc8-47e5-888f-44da0a455a26</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>data-localization-key</name>
+      <type>Main</type>
+      <value>formButtonPrimary</value>
+      <webElementGuid>48b0fb92-fb61-48c1-a07a-64d98c90b394</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value>Continue</value>
+      <webElementGuid>961e0cc2-366f-4ded-8d5c-f05d1de62ee0</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>/html[1]/body[@class=&quot;__className_e66fe9&quot;]/main[@class=&quot;flex min-h-screen w-full items-center justify-between&quot;]/div[@class=&quot;mx-auto&quot;]/div[@class=&quot;cl-rootBox cl-signIn-root 🔒️ cl-internal-phfxlr&quot;]/div[@class=&quot;cl-card cl-card cl-signIn-start 🔒️ cl-internal-17ydaof&quot;]/div[@class=&quot;cl-main 🔒️ cl-internal-xk295g&quot;]/form[@class=&quot;cl-form 🔒️ cl-internal-zfbclv&quot;]/button[@class=&quot;cl-formButtonPrimary 🔒️ cl-internal-1fsg6zy&quot;]</value>
+      <webElementGuid>f59fd24f-dec2-4efd-9b0f-473186c45f75</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Password'])[1]/following::button[2]</value>
+      <webElementGuid>edf91c6d-b0a4-48e6-a1b7-83fec1f7a995</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Username'])[1]/following::button[2]</value>
+      <webElementGuid>e515a8e5-e607-4e07-b651-f972174414ac</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='No account?'])[1]/preceding::button[1]</value>
+      <webElementGuid>e8aab343-257b-4b8d-a65e-5088387ea2fe</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Sign up'])[1]/preceding::button[1]</value>
+      <webElementGuid>5c2d7212-f6ca-45e9-9321-706e18eea3aa</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>//*/text()[normalize-space(.)='Continue']/parent::*</value>
+      <webElementGuid>aadf4999-7c18-47b9-b92f-4075907bf31a</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//button[2]</value>
+      <webElementGuid>08350679-b70b-46bb-b9d1-3d3cab3476c0</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//button[(text() = 'Continue' or . = 'Continue')]</value>
+      <webElementGuid>7086dff5-66e9-4b6f-8fd5-b14dc0c4cd85</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>
