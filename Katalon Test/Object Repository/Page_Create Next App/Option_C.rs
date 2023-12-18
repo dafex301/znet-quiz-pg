@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>Option_C</name>
+   <tag></tag>
+   <elementGuidId>b3919bcd-fd80-409d-843f-0abeea707363</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>BASIC</key>
+         <value>//*[(text() = 'C' or . = 'C')]</value>
+      </entry>
+      <entry>
+         <key>CSS</key>
+         <value></value>
+      </entry>
+      <entry>
+         <key>XPATH</key>
+         <value>(.//*[normalize-space(text()) and normalize-space(.)='B'])[1]/following::span[1]</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>BASIC</selectorMethod>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>span</value>
+      <webElementGuid>4558678f-5610-4e0c-af12-15694185721a</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>text-xl mr-3 font-medium text-purple-800</value>
+      <webElementGuid>96e991af-408d-452b-b2bf-c97f5e4c7b8f</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value>C</value>
+      <webElementGuid>42336c2b-f155-4ba4-9ff0-b19b7715f95d</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>/html[1]/body[@class=&quot;__className_e66fe9&quot;]/div[@class=&quot;mx-5&quot;]/div[@class=&quot;flex flex-col gap-4 transition-all&quot;]/div[3]/label[@class=&quot;text-left flex items-center border-gray-300 hover:bg-gray-100 border-2 rounded-full p-2 px-4 transition-all&quot;]/span[@class=&quot;text-xl mr-3 font-medium text-purple-800&quot;]</value>
+      <webElementGuid>0763a43e-38d4-4d79-a4e6-6bbf104661c2</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='B'])[1]/following::span[1]</value>
+      <webElementGuid>add8aea9-bb51-492c-8aae-96d4d269e572</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='D'])[1]/preceding::span[1]</value>
+      <webElementGuid>6b1db7f6-6d19-4046-a4d1-22d0712d3f34</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>//*/text()[normalize-space(.)='C']/parent::*</value>
+      <webElementGuid>757dbd65-3cd4-4513-bd0e-a088dc40b105</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//div[3]/label/span</value>
+      <webElementGuid>ddd24b37-dc7c-49db-b235-15295bebaa75</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//span[(text() = 'C' or . = 'C')]</value>
+      <webElementGuid>a642dce2-14f9-4a3d-8e02-ec10a3d91831</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>

@@ -196,4 +196,6 @@ export const createPracticeMachine = (userId: string, score: number) =>
         },
       },
     }
+
   );
+
