@@ -8,10 +8,12 @@
     "start": "next start",
     "lint": "next lint",
     "seed": "node -r dotenv/config ./scripts/seed.js",
-    "test": "jest"
+    "test-watch": "jest --watch"
   },
   "dependencies": {
-    "@clerk/nextjs": "^4.27.4",
+
+    "@clerk/nextjs": "^4.27.2",
+
     "@playwright/test": "^1.39.0",
     "@vercel/postgres": "^0.5.1",
     "@xstate/inspect": "^0.8.0",
@@ -24,7 +26,7 @@
     "xstate": "^4.38.3"
   },
   "devDependencies": {
-    "@types/jest": "^29.5.10",
+    "@types/jest": "^29.5.8",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
@@ -37,7 +39,7 @@
     "prettier": "3.0.3",
     "tailwindcss": "^3.3.0",
     "ts-jest": "^29.1.1",
-    "typescript": "^5.3.2"
+    "typescript": "^5"
   },
   "volta": {
     "node": "18.18.2"

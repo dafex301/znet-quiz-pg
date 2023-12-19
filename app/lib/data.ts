@@ -32,7 +32,6 @@ export async function fetchQuestions(): Promise<
 
 export async function fetchAnswer(
   question_id: string
-  // ): Promise<Pick<IQuestion, "correct_answer">> {
 ): Promise<number> {
   try {
     const data =
