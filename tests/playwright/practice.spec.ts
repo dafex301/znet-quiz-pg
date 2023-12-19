@@ -1,93 +1,55 @@
-import { Page, expect, test } from "@playwright/test";
-import { createModel } from "@xstate/test";
-import { addTestsToMachine, dedupPathPlans } from "../utils";
-import { practiceMachine } from "../../app/practice/machine";
+import { test, expect } from "@playwright/test";
 
-const practiceMachineWithTests = addTestsToMachine(practiceMachine, {
-  idle: async (page) => {
-    await expect(page.getByText("Start Practice")).toBeVisible();
-  },
-  questionDisplayed: async (page) => {
-    await expect(page.getByText("What's the capital of France?")).toBeVisible();
-  },
-  submissionEvaluationDisplayed: async (page) => {
-    await expect(page.getByText("Correct answer:")).toBeVisible();
-  },
-  leaveConfirmationDisplayed: async (page) => {
-    await expect(
-      page.getByText("Are you sure you want to leave?")
-    ).toBeVisible();
-  },
-  practiceResultDisplayed: async (page) => {
-    await expect(page.getByText("Your Score:")).toBeVisible();
-  },
-});
+test.describe("Practice Machine", () => {
+  test("should be in idle state initially", async ({ page }) => {
+    await page.goto("await page.goto('http://localhost:3000/practice');
+    // await page.goto('http://localhost:3000/sign-in?redirect_url=http%3A%2F%2Flocalhost%3A3000%2Fpractice');
+    await page.getByLabel('Email address or username').click();
+    await page.getByLabel('Email address or username').fill('rachelrdmk17@gmail.com');
+    await page.getByRole('button', { name: 'Continue' }).click();
+    await page.getByLabel('Password', { exact: true }).press('CapsLock');
+    await page.getByLabel('Password', { exact: true }).fill('R');
+    await page.getByLabel('Password', { exact: true }).press('CapsLock');
+    await page.getByLabel('Password', { exact: true }).fill('Rrdmk1742');
+    const page1Promise = page.waitForEvent('popup');
+    await page.getByRole('button', { name: 'Continue' }).click();
+    const page1 = await page1Promise;
+    await page.getByRole('button', { name: 'Start New Practice' }).click();
+    await expect(startPracticeButton).toBeVisible();
+    // await page.getByText('CParis').click();
+    // await page.getByRole('button', { name: 'Next' }).click();
+    // await page.getByText('BCarbon dioxide').click();
+    // await page.getByRole('button', { name: 'Next' }).click();
+    // await page.getByText('A2').click();
+    // await page.getByRole('button', { name: 'Next' }).click();
+    // await page.getByText('B4').click();
+    // await page.getByRole('button', { name: 'Next' }).click();
+    // await page.getByText('BHarper Lee').click();
+    // await page.getByRole('button', { name: 'Selesai' }).click();");
+    // await expect(startPracticeButton).toBeVisible();
+  });
 
-const model = createModel<Page>(practiceMachineWithTests, {
-  events: {
-    PRACTICE_STARTED: {
-      exec: async (page) => {
-        await page.click("text='Start Practice'");
-      },
-    },
-    ANSWER_SUBMITTED: {
-      exec: async (page) => {
-        await page.click("text='Paris'");
-      },
-    },
-    NEW_QUESTION_REQUESTED: {
-      exec: async (page) => {
-        await page.click("text='Next'");
-      },
-    },
-    PRACTICE_FINISHED: {
-      exec: async (page) => {
-        await page.click("text='Selesai'");
-      },
-    },
-    PRACTICE_LEFT: {
-      exec: async (page) => {
-        await page.click("text='Leave'");
-      },
-    },
-    LEAVE_CONFIRMED: {
-      exec: async (page) => {
-        await page.click("text='Yes'");
-      },
-    },
-    LEAVE_CANCELLED: {
-      exec: async (page) => {
-        await page.click("text='No'");
-      },
-    },
-    NEW_PRACTICE_REQUESTED: {
-      exec: async (page) => {
-        await page.click("text='Start New Practice'");
-      },
-    },
-  },
-});
+  test("should display question when in questionDisplayed state", async ({ page }) => {
+    await page.goto("http://localhost:3000/practice");
+    const questionText = await page.locator("text=What's the capital of France?");
+    await expect(questionText).toBeVisible();
+  });
 
-const pathPlans = model.getShortestPathPlans();
+  test("should display submission evaluation when in submissionEvaluationDisplayed state", async ({ page }) => {
+    await page.goto("http://localhost:3000/practice");
+    const evaluationText = await page.locator("text=Correct answer:");
+    await expect(evaluationText).toBeVisible();
+  });
 
-// test.describe.configure({ mode: "parallel" });
-// test.beforeEach(async ({ page }, testInfo) => {
-//   console.log(`Running ${testInfo.title}`);
-//   await page.goto("https://my.start.url/");
-// });
+  test("should display leave confirmation when in leaveConfirmationDisplayed state", async ({ page }) => {
+    await page.goto("http://localhost:3000/practice");
+    const confirmationText = await page.locator("text=Are you sure you want to leave?");
+    await expect(confirmationText).toBeVisible();
+  });
 
-test.describe("znet-pg-practice mbt", () => {
-  dedupPathPlans(pathPlans).forEach((plan) => {
-    // pathPlans.forEach((plan) => {
-    test(plan.description, async ({ page }) => {
-      await page.goto("http://localhost:3000");
-      await page.waitForLoadState("load");
-      await page.getByLabel("Username").fill("dafex");
-      await page.keyboard.press("Enter");
-      await page.getByLabel("Password", { exact: true }).fill("nasiRendang!23");
-      await page.keyboard.press("Enter");
-      await page.getByRole("link", { name: "Go to Practice" }).click();
-      await plan.test(page);
-    });
+  test("should display practice result when in practiceResultDisplayed state", async ({ page }) => {
+    await page.goto("http://localhost:3000/practice");
+    const scoreText = await page.locator("text=Your Score:");
+    await expect(scoreText).toBeVisible();
   });
 });

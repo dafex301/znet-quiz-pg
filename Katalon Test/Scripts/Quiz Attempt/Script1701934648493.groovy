@@ -37,6 +37,8 @@ WebUI.click(findTestObject('Object Repository/Page_Create Next App/a_Go to Pract
 
 WebUI.click(findTestObject('Object Repository/Page_Create Next App/button_Start New Practice'))
 
+WebUI.click(findTestObject('Object Repository/Page_Create Next App/button_Selesai'))
+
 Random rand = new Random()
 
 for (int questionNumber = 1; questionNumber <= 5; questionNumber++) {
