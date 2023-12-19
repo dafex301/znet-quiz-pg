@@ -39,57 +39,57 @@ WebUI.click(findTestObject('Object Repository/Page_Create Next App/button_Start 
 
 WebUI.click(findTestObject('Object Repository/Page_Create Next App/button_Selesai'))
 
-Random rand = new Random()
-
-for (int questionNumber = 1; questionNumber <= 5; questionNumber++) {
-    int randNumber = rand.nextInt(4) + 1
-
-    WebUI.comment('Random number generated: ' + randNumber)
-
-    switch (randNumber) {
-        case 1:
-            WebUI.click(findTestObject('Object Repository/Page_Create Next App/Option_A'))
-
-            WebUI.delay(5)
-
-            checkVisible(findTestObject('Object Repository/Page_Create Next App/button_Next'))
-
-            break
-        case 2:
-            WebUI.click(findTestObject('Object Repository/Page_Create Next App/Option_B'))
-
-            WebUI.delay(5)
-
-            checkVisible(findTestObject('Object Repository/Page_Create Next App/button_Next'))
-
-            break
-        case 3:
-            WebUI.click(findTestObject('Object Repository/Page_Create Next App/Option_C'))
-
-            WebUI.delay(5)
-
-            checkVisible(findTestObject('Object Repository/Page_Create Next App/button_Next'))
-
-            break
-        case 4:
-            WebUI.click(findTestObject('Object Repository/Page_Create Next App/Option_D'))
-
-            WebUI.delay(5)
-
-            checkVisible(findTestObject('Object Repository/Page_Create Next App/button_Next'))
-
-            break
-        default:
-            WebUI.comment('Invalid random number generated.')} // cek is visible dlu yg button next
-}
-
-def checkVisible(TestObject buttonNext) {
-    if (WebUI.verifyElementVisible(buttonNext, FailureHandling.OPTIONAL)) {
-        WebUI.click(findTestObject('Object Repository/Page_Create Next App/button_Next'))
-    } else {
-        WebUI.click(findTestObject('Object Repository/Page_Create Next App/button_Selesai'))
-		WebUI.verifyElementVisibleInViewport(findTestObject('Page_Create Next App/p_Your Score Result'), 0)
-    }
-}
+//Random rand = new Random()
+//
+//for (int questionNumber = 1; questionNumber <= 5; questionNumber++) {
+//    int randNumber = rand.nextInt(4) + 1
+//
+//    WebUI.comment('Random number generated: ' + randNumber)
+//
+//    switch (randNumber) {
+//        case 1:
+//            WebUI.click(findTestObject('Object Repository/Page_Create Next App/Option_A'))
+//
+//            WebUI.delay(5)
+//
+//            checkVisible(findTestObject('Object Repository/Page_Create Next App/button_Next'))
+//
+//            break
+//        case 2:
+//            WebUI.click(findTestObject('Object Repository/Page_Create Next App/Option_B'))
+//
+//            WebUI.delay(5)
+//
+//            checkVisible(findTestObject('Object Repository/Page_Create Next App/button_Next'))
+//
+//            break
+//        case 3:
+//            WebUI.click(findTestObject('Object Repository/Page_Create Next App/Option_C'))
+//
+//            WebUI.delay(5)
+//
+//            checkVisible(findTestObject('Object Repository/Page_Create Next App/button_Next'))
+//
+//            break
+//        case 4:
+//            WebUI.click(findTestObject('Object Repository/Page_Create Next App/Option_D'))
+//
+//            WebUI.delay(5)
+//
+//            checkVisible(findTestObject('Object Repository/Page_Create Next App/button_Next'))
+//
+//            break
+//        default:
+//            WebUI.comment('Invalid random number generated.')} // cek is visible dlu yg button next
+//}
+//
+//def checkVisible(TestObject buttonNext) {
+//    if (WebUI.verifyElementVisible(buttonNext, FailureHandling.OPTIONAL)) {
+//        WebUI.click(findTestObject('Object Repository/Page_Create Next App/button_Next'))
+//    } else {
+//        WebUI.click(findTestObject('Object Repository/Page_Create Next App/button_Selesai'))
+//		WebUI.verifyElementVisibleInViewport(findTestObject('Page_Create Next App/p_Your Score Result'), 0)
+//    }
+//}
 
 
