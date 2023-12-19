@@ -11,12 +11,13 @@
     "test": "jest"
   },
   "dependencies": {
-    "@clerk/nextjs": "^4.26.2",
+    "@clerk/nextjs": "^4.27.4",
     "@playwright/test": "^1.39.0",
     "@vercel/postgres": "^0.5.1",
     "@xstate/inspect": "^0.8.0",
     "@xstate/test": "^0.5.1",
     "next": "14.0.1",
+    "playwright": "^1.40.1",
     "react": "^18",
     "react-dom": "^18",
     "seq-uuid": "^0.1.4",
