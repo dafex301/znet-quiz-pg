@@ -1,6 +1,12 @@
-import { practiceMachine } from "../../app/practice/machine";
+import { createPracticeMachine } from "../../app/practice/machine";
 import { interpret } from "xstate";
 import { waitFor } from "xstate/lib/waitFor";
+
+// TODO: fill in the blanks
+const USER_ID = "";
+const SCORE = 0;
+
+const practiceMachine = createPracticeMachine(USER_ID, SCORE);
 
 const mockPracticeMachine = practiceMachine.withConfig({
   services: {
